@@ -18,16 +18,36 @@ public class Main {
         System.out.println("Please enter your Name");
         System.out.println("First name:");
         Firstname = reader.nextLine();
-        System.out.println("Middle name (Initial only followed by comma):");
+        System.out.println("Middle name (If provided please enter initial only followed by comma):");
         Middlename = reader.nextLine();
+
         System.out.println("Last name:");
         LastName = reader.nextLine();
         System.out.println("Suffix:");
         Suffix = reader.nextLine();
 
-        String Fullname = Suffix + " " + Firstname + " " + Middlename + " " + LastName;
+        String Fullname = SpaceEraser(Firstname, Middlename, LastName, Suffix);
         System.out.println(Fullname);
 
 
+
+        System.out.println(Fullname.trim());
+        reader.close();
+
+
+    }
+
+    private static String SpaceEraser(String Firstname, String Middlename, String Lastname, String Suffix){
+        StringBuilder Fullname = new StringBuilder(Firstname);
+
+        if (Middlename.isEmpty()){
+            Fullname.append(" ").append(Middlename);
+        }
+        Fullname.append(Lastname);
+
+        if (!Suffix.isEmpty()){
+            Fullname.append(" ").append(Suffix);
+        }
+        return Fullname.toString();
     }
 }
